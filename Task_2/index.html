@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Conditional Form</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Conditional Form</h1>
+    <form>
+      <div class="form-group">
+        <label for="country">Country:</label>
+        <select id="country" class="form-control" onchange="handleCountryChange()">
+          <option value="">Select a country</option>
+          <option value="india">India</option>
+          <!-- Add more countries here -->
+        </select>
+      </div>
+
+      <div class="form-group" id="statesContainer" style="display: none;">
+        <label for="state">State:</label>
+        <select id="state" class="form-control" onchange="handleStateChange()">
+          <option value="">Select a state</option>
+          <!-- State options will be dynamically populated based on the selected country -->
+        </select>
+      </div>
+
+      <div class="form-group" id="citiesContainer" style="display: none;">
+        <label for="city">City:</label>
+        <select id="city" class="form-control">
+          <option value="">Select a city</option>
+          <!-- City options will be dynamically populated based on the selected state -->
+        </select>
+      </div>
+    </form>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    function handleCountryChange() {
+      var countrySelect = document.getElementById("country");
+      var statesContainer = document.getElementById("statesContainer");
+      var stateSelect = document.getElementById("state");
+      var citiesContainer = document.getElementById("citiesContainer");
+      var citySelect = document.getElementById("city");
+
+      stateSelect.innerHTML = ""; // Clear state options
+      citySelect.innerHTML = ""; // Clear city options
+
+      if (countrySelect.value === "india") {
+        // Add Indian states
+        statesContainer.style.display = "block";
+        var indianStates = ["Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal"];
+        for (var i = 0; i < indianStates.length; i++) {
+          var option = document.createElement("option");
+          option.value = indianStates[i];
+          option.text = indianStates[i];
+          stateSelect.appendChild(option);
+        }
+      } else {
+        statesContainer.style.display = "none";
+        citiesContainer.style.display = "none";
+      }
+    }
+
+    function handleStateChange() {
+      var stateSelect = document.getElementById("state");
+      var citiesContainer = document.getElementById("citiesContainer");
+      var citySelect = document.getElementById("city");
+
+      citySelect.innerHTML = ""; // Clear city options
+
+      if (stateSelect.value !== "") {
+        // Add cities based on the selected state
+        citiesContainer.style.display = "block";
+        // You can replace the city options with your own list of cities based on the selected state
+        var cities = ["City 1", "City 2", "City 3"];
+        for (var i = 0; i < cities.length; i++) {
+          var option = document.createElement("option");
+          option.value = cities[i];
+          option.text = cities[i];
+          citySelect.appendChild(option);
+        }
+      } else {
+        citiesContainer.style.display = "none";
+      }
+    }
+  </script>
+</body>
+</html>
