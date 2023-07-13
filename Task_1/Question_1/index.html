@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <title>Search and Download</title>
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .container {
+      max-width: 500px;
+      margin: 100px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 5px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      font-weight: bold;
+    }
+    .form-group input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+    }
+    .btn-download {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Search and Download</h1>
+    <div class="form-group">
+      <label for="search-input">Enter your search query:</label>
+      <input type="text" id="search-input" placeholder="Enter keywords">
+    </div>
+    <button class="btn btn-download">Download</button>
+  </div>
+
+  <script>
+    const downloadButton = document.querySelector('.btn-download');
+    const searchInput = document.querySelector('#search-input');
+
+    downloadButton.addEventListener('click', () => {
+      const searchQuery = searchInput.value;
+      // Perform the download logic here
+      // You can use AJAX, fetch, or any other method to communicate with the server
+      // For simplicity, let's just log the search query in the console
+      console.log('Search Query:', searchQuery);
+    });
+  </script>
+</body>
+</html>
 
